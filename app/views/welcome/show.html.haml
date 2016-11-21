@@ -1,1 +1,16 @@
 %h1= "Hi #{@user.username} - #{@user.email}"
+
+%img(src="#{@user.shop.result['icon_url_fullxfull']}")
+
+-#include Etsy::Model
+
+%h2 Orders
+%table
+  - @open_orders.each do |order|
+    %tr
+      %td= "#{order.name}"
+      -#%td= debug(order.result)
+
+%h2 Shop
+%pre
+  = debug(@shop.methods)

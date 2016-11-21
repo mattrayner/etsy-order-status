@@ -10,9 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20161121162616) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "receipts", force: :cascade do |t|
+    t.integer  "etsy_id",                   null: false
+    t.boolean  "active",     default: true, null: false
+    t.integer  "user_id",                   null: false
+    t.integer  "status_id",                 null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.index ["etsy_id"], name: "index_receipts_on_etsy_id", unique: true, using: :btree
+    t.index ["status_id"], name: "index_receipts_on_status_id", using: :btree
+    t.index ["user_id"], name: "index_receipts_on_user_id", using: :btree
+  end
+
+  create_table "statuses", force: :cascade do |t|
+    t.string   "title",      null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["title"], name: "index_statuses_on_title", unique: true, using: :btree
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.integer  "etsy_id",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["etsy_id"], name: "index_users_on_etsy_id", unique: true, using: :btree
+  end
 
 end

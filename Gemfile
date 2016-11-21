@@ -43,6 +43,9 @@ group :development, :test do
   # Use RSPEC for testing
   gem 'rspec-rails', '~> 3.5'
 
+  # Use factory girl for test factories
+  gem 'factory_girl_rails', '~> 4.0'
+
   # Use dotenv to store environment variables during development
   gem 'dotenv-rails'
 
@@ -53,6 +56,9 @@ end
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console'
+
+  gem 'binding_of_caller'
+  gem 'better_errors'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
